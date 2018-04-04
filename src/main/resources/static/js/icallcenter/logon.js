@@ -3,10 +3,10 @@
 icallcenter.logon.startLogon = function (loginName, password, extenType) {
 	var config = {
         Monitor: true,
-        proxy_url: "http://x.x.x.x",//不同账号需要不同IP地址，请查询后修改
+        proxy_url: "http://119.254.80.101/",//不同账号需要不同IP地址，请查询后修改
         extenType: extenType,
         password: password,
-		User: loginName,
+		User: loginName+"@fswlcm",
 		busyType: "0"
     };
 	icallcenter.logon.initPhone(config);

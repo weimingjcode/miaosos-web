@@ -192,7 +192,7 @@ hojo.declare("icallcenter.callProcessor", null, {
     },
     
     sendAction: function(json) {
-    	//hojo.byId("icallcenter.iframe").src="http://localhost:15062/?json=" + hojo.toJson(json) + "&random=" + Math.floor(Math.random()*100000);
+    	// hojo.byId("icallcenter.iframe").src="http://localhost:15062/?json=" + hojo.toJson(json) + "&random=" + Math.floor(Math.random()*100000);
     }
     
 });

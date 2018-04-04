@@ -1,5 +1,21 @@
 package com.miaosos.controller.base;
 
+import com.miaosos.service.risk.IRiskService;
+import com.miaosos.service.system.IUserService;
+import com.miaosos.service.system.impl.UserServiceImpl;
+import io.lettuce.core.ConnectionId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 描述:
  * 基础的Controller类 所有controller 都需继承此类
@@ -7,7 +23,58 @@ package com.miaosos.controller.base;
  * @auth zln
  * @create 2018-03-29 16:27
  */
+@Configuration
+@ConfigurationProperties(prefix = "miaosos.base")
 public class BaseController {
 
+    @Autowired
+    public IUserService userService;
 
+    @Autowired
+    public RedisTemplate redisTemplate;
+
+    @Autowired
+    public IRiskService riskService;
+
+    private String projectName;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    //获取ip
+    public String getIp(){
+        HttpServletRequest request = getRequest();
+        String ip=request.getHeader("x-forwarded-for");
+        if(ip == null || ip.length() == 0 || ip == "null" ||  "unknown".equalsIgnoreCase(ip)){
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || ip == "null" || "unknown".equalsIgnoreCase(ip)){
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || ip == "null" || "unknown".equalsIgnoreCase(ip)){
+            ip = getRequest().getRemoteAddr();
+        }
+        return ip;
+    }
+
+    //获取httpRequest
+    public HttpServletRequest getRequest() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
+
+        return request;
+    }
+
+    public void saveUser2Redis(String key, Object value) {
+        try {
+            redisTemplate.opsForValue().set(key,value,30, TimeUnit.MINUTES);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

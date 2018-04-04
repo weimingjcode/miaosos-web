@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>报险受理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/plugins/messenger/messenger.css" rel="stylesheet">
+    <link href="/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+    <link href="/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <!-- 样式 -->
+    <link rel="stylesheet" href="/css/index.css">
+
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox">
+        <div class="ibox-content">
+            <!-- 第一行 联系 -->
+            <!-- 第一行 联系 -->
+            <div class="row">
+                <iframe th:src="@{../phonebar.html}" frameborder="0" style="width:100%;height:105px;"></iframe>
+            </div>
+            <!-- 第二行 搜索 -->
+            <div class="row m-b">
+                <div class="col-sm-2">
+                    <!-- input -->
+                    <div class="input-group keySearch" style="width: 100%;">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="这里输入关键词" class="input form-control">
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn" title="检索" style="background:#fc7660">
+                        <span style="color: #fff;">查询</span>
+                    </button>
+                </div>
+            </div>
+            <!-- 第三行 表格 -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="exampleTableEvents" class="table-no-bordered" data-click-to-select="true"
+                           data-mobile-responsive="true">
+                        <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th>ID</th>
+                            <th>真实姓名</th>
+                            <th>当事人电话</th>
+                            <th>报险地址</th>
+                            <th>报险时间</th>
+                            <th>设备编号</th>
+                            <th>设备类型</th>
+                            <!--<th th:if="${gps_status} ==1 ? false : true ">是否处理</th>-->
+                            <th th:if="${gps_status} ==1 ? false : true ">受理人</th>
+                            <th th:if="${gps_status} ==1 ? false : true ">处理人</th>
+                            <th th:if="${gps_status} ==1 ? false : true ">处理时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="gpsinfo : ${gpsInfoList}">
+                            <td data-checkbox="true"></td>
+                            <td>[[${gpsinfo.id}]]</td>
+                            <td>[[${gpsinfo.username}]]</td>
+                            <td>[[${gpsinfo.phone}]]</td>
+                            <td th:title="${gpsinfo.gps_addr}" th:if="${#strings.length(gpsinfo.gps_addr) &gt; 15}"
+                                th:text="${#strings.substring(gpsinfo.gps_addr,0,15)+'...'}"></td>
+                            <td th:text="${#dates.format(gpsinfo.alarm_time,'yyyy-MM-dd HH:mm:ss')}"></td>
+                            <td>[[${gpsinfo.device_no}]]</td>
+                            <td>[[${gpsinfo.device_type}]]</td>
+                            <!--<td>[[${gpsinfo.gps_status}]]</td>-->
+                            <td th:if="${gpsinfo.gps_status} == 1 ? false : true ">
+                                <span class="text-fff">[[${gpsinfo.accepter}]]</span>
+                            </td>
+                            <td th:if="${gpsinfo.gps_status} == 1 ? false : true ">
+                                <span class="text-info"
+                                      th:if="${gpsinfo.handler == null ? '暂无处理人': gpsinfo.handler}"></span>
+                            </td>
+                            <td th:if="${gpsinfo.gps_status} ==1 ? false : true ">
+                                <span th:if="${gpsinfo.gps_status} == 2" class="text-warning">处理中</span>
+                                <span th:if="${gpsinfo.gps_status} == 3" class="text-green">处理完成</span>
+                            </td>
+                            <td>
+
+                                <a href="#"
+                                   onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"
+                                   title="查看">
+                                    <span class="c_f11 m-r-sm">查看</span>
+                                </a>
+                                <a href="#"
+                                   onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"
+                                   title="关联">
+                                    <span class="c_333 m-r-sm">关联</span>
+                                </a>
+                                <a href="#"
+                                   onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"
+                                   title="结案报告">
+                                    <span class="c_11c997">结案报告</span>
+                                </a>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Panel Other -->
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+
+
+<!-- Bootstrap table -->
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<!-- Chosen -->
+<script src="/js/plugins/chosen/chosen.jquery.js"></script>
+<!-- messenger -->
+<script src="/js/plugins/messenger/messenger.js"></script>
+<script>
+
+
+    // 表格初始化
+    $('#exampleTableEvents').bootstrapTable({
+        pagination: true, // 分页
+        pageNumber: 1, // 首页页码
+        pageSize: 10, // 每页数据个数
+        pageList: [10, 25, 50, 100] // 页面数据条数
+    });
+
+    function showModal(x, y, type, loc) {
+        var _$modal = window.parent.$('#riskModal');
+        // 初始化地图
+        window.parent.initMap(x, y, type, loc)
+        // 弹框初始化
+        _$modal.modal('show');
+    }
+
+
+    // 查看弹框的确定方法
+    $('#viewModal .confirm').on({
+        click: function (event) {
+            // var button = $(event.relatedTarget) // 触发事件的按钮
+            // var recipient = button.data('whatever') // 解析出data-whatever内容
+            alert("触发了确定方法");
+            $('#resetModal').modal('hide'); // model隐藏
+        }
+    });
+</script>
+
+</body>
+
+</html>
