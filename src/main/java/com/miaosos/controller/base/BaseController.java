@@ -36,7 +36,11 @@ public class BaseController {
     @Autowired
     public IRiskService riskService;
 
-    private String projectName;
+    private String projectName;  //项目名称
+
+    private String sessionUser;  //sessionuser
+
+    private String resourcePath;  //资源路径
 
     public String getProjectName() {
         return projectName;
@@ -44,6 +48,14 @@ public class BaseController {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getSessionUser() {
+        return sessionUser;
+    }
+
+    public void setSessionUser(String sessionUser) {
+        this.sessionUser = sessionUser;
     }
 
     //获取ip
@@ -76,5 +88,13 @@ public class BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getResourcePath() {
+        return resourcePath;
+    }
+
+    public void setResourcePath(String resourcePath) {
+        this.resourcePath = resourcePath;
     }
 }

@@ -42,6 +42,12 @@ public interface IRiskDao {
             " on " +
                 "su.user_id = g.handler_id"+
             " where " +
-                "g.gps_status=#{status}")
-    List<Map> findGpsInfoByStatus(@Param("status") Integer status);
+                "g.gps_status=#{status} " +
+            "order by " +
+                "g.id desc")
+    List<Map<String, String>> findGpsInfoByStatus(@Param("status") Integer status);
+
+    @ResultType(Map.class)
+    @Select("select id,gps_addr,gps_latitude,gps_dimension,gps_time,gps_info_id from gps_addr where gps_info_id=#{gpsInfoId} order by gps_time desc")
+    List<Map<String,String>> findGpsAddrByGpsInfoId(@Param("gpsInfoId") Integer gpsInfoId);
 }

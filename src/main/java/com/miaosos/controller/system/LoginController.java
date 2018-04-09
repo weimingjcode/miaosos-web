@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Random;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class LoginController extends BaseController {
 
 
     @ApiOperation(value = "缺省,及index,跳转到登录页!", notes = "")
-    @GetMapping(value = {"/", "index.html", "index"})
+    @GetMapping(value = {"/"})
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("projectName", getProjectName());
         return "login";
@@ -28,7 +29,7 @@ public class LoginController extends BaseController {
 
     @ApiOperation(value = "跳转登录页面", notes = "条状")
     @PostMapping("/toLogin")
-    public String toLogin(ModelMap modelMap, SysUser user,HttpServletResponse response) {
+    public String toLogin(ModelMap modelMap, SysUser user,HttpSession session) {
         Result result = new Result();
         String ip = getIp();
         System.out.println(ip + "======");
@@ -39,9 +40,10 @@ public class LoginController extends BaseController {
         } else {
             user = userService.findSysUserByUsernameAndPassword(user);
             if (user != null) {
-                String token = UUID.randomUUID().toString().replace("-", "");
-                saveUser2Redis(token,user);
-                response.addCookie(MiaososUtils.createCookie(token));
+                session.setAttribute(getSessionUser(),user);
+               // String token = UUID.randomUUID().toString().replace("-", "");
+               // saveUser2Redis(token,user);
+               // response.addCookie(MiaososUtils.createCookie(token));
             }else {
                 result.setMsg("您的账号或密码错误!");
                 modelMap.addAttribute(result);
@@ -52,5 +54,12 @@ public class LoginController extends BaseController {
         return "home";
     }
 
+
+    @ApiOperation(value = "登出功能!", notes = "")
+    @GetMapping(value = {"/logout"})
+    public String logout(HttpSession session) {
+        session.removeAttribute(getSessionUser());
+        return "login";
+    }
 
 }

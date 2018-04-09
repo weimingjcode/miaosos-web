@@ -6,15 +6,15 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
     <META HTTP-EQUIV="Expires" CONTENT="0">
     <title>softphoneBar</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
-    <script type="text/javascript" src="js/icallcenter/global.js"></script>
-    <script type="text/javascript" src="hojo/hojo.js" djConfig="isDebug:false, parseOnLoad:false"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+    <script type="text/javascript" src="/js/icallcenter/global.js"></script>
+    <script type="text/javascript" src="/hojo/hojo.js" djConfig="isDebug:false, parseOnLoad:false"></script>
     <script type="text/javascript">
-        hojo.registerModulePath("icallcenter", "js/icallcenter");
+        hojo.registerModulePath("icallcenter", "/js/icallcenter");
         hojo.require("icallcenter.logon");
         hojo.require("hojo.io.script");
 
@@ -25,7 +25,6 @@
 //    var loginName = "6000@proxy2test3";
 //    var password = "6000";
 //    var extenType = "gateway";//Local
-
             icallcenter.logon.startLogon(loginName, password, extenType);
         });
 
@@ -59,8 +58,9 @@
                         <span>外呼</span>
                     </a>
                 </li>
-                <li class="none">
-                    <a href="#" class="DialDisable" id="DialDisable" style="display: none"></a>
+                <li class="cur">
+                    <a href="#" class="DialDisable" id="DialDisab
+                    le" style="display: none"></a>
                 </li>
 
                 <li>
@@ -156,7 +156,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0)" id="RestEnable" class="RestEnable">
+                    <a href="javascript:void(0)" id="RestEnable" class="RestEnable cur">
                         <span>小休</span>
                     </a>
                 </li>
@@ -167,7 +167,7 @@
                     <a href="#" onclick="javascript:phone.setBusy(true,'1')" id="BusyDisable" class="BusyDisable"></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="BusyEnable" class="BusyEnable">
+                    <a href="javascript:void(0)" id="BusyEnable" class="BusyEnable cur">
                         <span>忙碌</span>
                     </a>
                 </li>

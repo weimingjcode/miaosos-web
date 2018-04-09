@@ -28,6 +28,7 @@ spring:
   thymeleaf:
     cache: false
 
+
   redis:
   # Redis服务器地址
     host: 47.104.135.224
@@ -41,8 +42,8 @@ spring:
 miaosos:
   base:
     projectName: 法视云
-    excludePath: "/,/toLogin,index,*.css,*.js"
-
+    sessionUser: sessionUser
+    resourcePath: 'http://8snf0ca1cc2m.d0o9w1n.t3re.miaosos.com'
 logging:
   path: /var/miaosos-web
 mybatis:

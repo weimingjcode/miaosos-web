@@ -11,12 +11,12 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="favicon.ico" th:href="@{favicon.ico}">
-    <link href="css/bootstrap.min.css?v=3.3.6" th:href="@{/css/bootstrap.min.css(v=3.3.6)}" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" th:href="@{/css/font-awesome.css(v=4.4.0)}" rel="stylesheet">
-    <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" th:href="@{/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
-    <link href="css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" th:href="@{/css/style.css(v=4.1.0)}" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" th:href="@{/favicon.ico}">
+    <link href="/css/bootstrap.min.css?v=3.3.6" th:href="@{/css/bootstrap.min.css(v=3.3.6)}" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" th:href="@{/css/font-awesome.css(v=4.4.0)}" rel="stylesheet">
+    <link href="/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" th:href="@{/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
+    <link href="/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" th:href="@{/css/style.css(v=4.1.0)}" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -32,14 +32,14 @@
         <div class="login-form">
             <form role="form" action="index.html" th:action="@{toLogin}" th:method="POST">
                 <div class="login-text clearfix">
-                    <h3 class="pull-left">用户登录</h3>
+                    <h1 class="pull-left">用户登录</h1>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </div>
-                        <input type="text" class="form-control" th:name="username" placeholder="请输入用户名" required="">
+                        <input type="text" class="form-control" th:name="username" placeholder="请输入用户名" required="" th:value="admin">
                     </div>
 
                 </div>
@@ -48,7 +48,7 @@
                         <div class="input-group-addon">
                             <i class="fa fa-lock"></i>
                         </div>
-                        <input type="password" class="form-control" th:name="password" placeholder="密码" required="">
+                        <input type="password" class="form-control" th:name="password" placeholder="密码" required="" th:value="123456">
                     </div>
                 </div>
                 <div class="clearfix">

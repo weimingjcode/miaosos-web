@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface IRiskService {
     List findGpsInfoByStatus(Integer status);
+
+    List<Map<String,String>> findGpsAddrByGpsInfoId(Integer gpsInfoId);
 }

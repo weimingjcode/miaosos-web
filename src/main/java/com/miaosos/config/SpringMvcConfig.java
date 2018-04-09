@@ -1,14 +1,14 @@
 package com.miaosos.config;
 
-import com.miaosos.controller.base.BaseController;
+import com.miaosos.entity.SysUser;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @ConfigurationProperties(prefix = "miaosos.base")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
-    public String excludePath;
+
+    public String sessionUser;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -25,29 +26,33 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+    }
+
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        class MiaososoInterceptor extends HandlerInterceptorAdapter{
+        class MiaososoInterceptor extends HandlerInterceptorAdapter {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-                if (excludePath.contains(request.getServletPath())) {
+                String servletPath = request.getServletPath();
+                SysUser user = (SysUser) request.getSession().getAttribute(sessionUser);
+                if (user != null) {
                     return true;
-                }else {
-                    Cookie[] cookies = request.getCookies();
-                    if (cookies == null) {
-                        return false;
-                    }
+                } else {
+                    response.sendRedirect("/");
+                    return false;
                 }
-                return true;
             }
         }
-        registry.addInterceptor(new MiaososoInterceptor());
+        registry.addInterceptor(new MiaososoInterceptor()).addPathPatterns("/**").excludePathPatterns("/", "/toLogin");
     }
 
-    public String getExcludePath() {
-        return excludePath;
+    public String getSessionUser() {
+        return sessionUser;
     }
 
-    public void setExcludePath(String excludePath) {
-        this.excludePath = excludePath;
+    public void setSessionUser(String sessionUser) {
+        this.sessionUser = sessionUser;
     }
 }

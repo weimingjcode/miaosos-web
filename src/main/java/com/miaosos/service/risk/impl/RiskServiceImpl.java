@@ -10,7 +10,12 @@ import java.util.Map;
 @Service("riskService")
 public class RiskServiceImpl extends BaseService implements IRiskService {
     @Override
-    public List findGpsInfoByStatus(Integer status) {
+    public List<Map<String, String>> findGpsInfoByStatus(Integer status) {
         return riskDao.findGpsInfoByStatus(status);
+    }
+
+    @Override
+    public List<Map<String, String>> findGpsAddrByGpsInfoId(Integer gpsInfoId) {
+        return riskDao.findGpsAddrByGpsInfoId(gpsInfoId);
     }
 }

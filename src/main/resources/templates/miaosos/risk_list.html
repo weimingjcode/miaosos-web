@@ -34,7 +34,7 @@
             <!-- 第一行 联系 -->
             <!-- 第一行 联系 -->
             <div class="row">
-                <iframe th:src="@{../phonebar.html}" frameborder="0" style="width:100%;height:105px;"></iframe>
+                <iframe th:src="@{../phonebar.html(loginName=${#httpSession.getAttribute('sessionUser').number},password=${#httpSession.getAttribute('sessionUser').phonePass},loginType=${#httpSession.getAttribute('sessionUser').phoneType})}" frameborder="0" style="width:100%;height:105px;"></iframe>
             </div>
             <!-- 第二行 搜索 -->
             <div class="row m-b">
@@ -98,13 +98,14 @@
                             </td>
                             <td>
 
+                                   <!--onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"-->
                                 <a href="#"
-                                   onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"
+                                   th:onclick="'javascript:getGpsAddr('+${gpsinfo.id}+');'"
                                    title="查看">
                                     <span class="c_f11 m-r-sm">查看</span>
                                 </a>
                                 <a href="#"
-                                   onclick="showModal('12722','061501000322222','车载','北京市丰台区丰葆路靠近北京矿冶研究总院(六圈路)');"
+                                   onclick="javascript:alert('12722');"
                                    title="关联">
                                     <span class="c_333 m-r-sm">关联</span>
                                 </a>
@@ -143,7 +144,16 @@
 <!-- messenger -->
 <script src="/js/plugins/messenger/messenger.js"></script>
 <script>
+    function getGpsAddr (gpsInfoId) {
+        $.ajax({
+            url : '/risk/gpsAddr/'+gpsInfoId,
+            type: 'GET',
+            success : function (data) {
+                showModal(data)
+            }
 
+        })
+    }
 
     // 表格初始化
     $('#exampleTableEvents').bootstrapTable({
@@ -153,10 +163,10 @@
         pageList: [10, 25, 50, 100] // 页面数据条数
     });
 
-    function showModal(x, y, type, loc) {
+    function showModal(data) {
         var _$modal = window.parent.$('#riskModal');
         // 初始化地图
-        window.parent.initMap(x, y, type, loc)
+        window.parent.initMap(data)
         // 弹框初始化
         _$modal.modal('show');
     }
@@ -171,6 +181,8 @@
             $('#resetModal').modal('hide'); // model隐藏
         }
     });
+
+
 </script>
 
 </body>

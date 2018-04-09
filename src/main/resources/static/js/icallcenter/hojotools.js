@@ -209,7 +209,7 @@ icallcenter.hojotools.error = function(message) {
     msgObj.innerHTML = "<div style='height:27px;background: #f3f3f3;overflow:hidden;padding-top:10px;padding-right:10px;'><div style='float:right'><a href='javascript:icallcenter.hojotools.close();'><img src='../imgs/tinybox/close_1.gif' style='cursor: pointer;border:0px;' /></a></div></div>"+
         					"<div style='height:30px;overflow:hidden;margin-top:20px;padding-left:20px;'><img src='../imgs/error.jpg' style='float:left;margin-top:4px;' /><div style='float:left;color:#666666;padding-left:5px;font-size:15px;padding-top:4px'>"+message+"</div></div>"+
         					"<div style='clear:both;height:1px;overflow:hidden'>&nbsp;</div>"+
-        					"<div style='padding-left:180px;padding-top:20px;'><a href='javascript:icallcenter.hojotools.close();'><img src='../imgs/confirm_1.jpg' onmouseover=\"this.src='../imgs/confirm_2.jpg'\" onmouseout=\"this.src='../imgs/confirm_1.jpg'\" style='cursor: pointer;border:0px;' /></a></div>";
+        					"<div style='padding-left:180px;padding-top:20px;'><a href='javascript:icallcenter.hojotools.close();'><img src='../icallcenter/imgs/confirm_1.jpg' onmouseover=\"this.src='../icallcenter/imgs/confirm_2.jpg'\" onmouseout=\"this.src='../icallcenter/imgs/confirm_1.jpg'\" style='cursor: pointer;border:0px;' /></a></div>";
 
     document.getElementById("softphonebar").appendChild(msgObj);
 }
