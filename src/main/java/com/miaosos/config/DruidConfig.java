@@ -1,3 +1,4 @@
+/*
 package com.miaosos.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -14,13 +15,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+*/
 /**
  * 描述:
  * Druid配置类
  *
  * @auth zln
  * @create 2018-03-29 16:07
- */
+ *//*
+
 @Configuration
 public class DruidConfig {
 
@@ -64,3 +67,4 @@ public class DruidConfig {
     }
 
 }
+*/

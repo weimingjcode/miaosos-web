@@ -49,7 +49,6 @@ hojo.declare("icallcenter.callProcessor", null, {
     },
     
     onHangup: function(data) {
-		hojo.byId("memo_info_div").innerHTML = "";
         console.info("onHangup=============")
 		console.log(data);
 		var callsheetId = data.callSheetId;

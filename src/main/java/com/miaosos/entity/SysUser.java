@@ -1,36 +1,41 @@
 package com.miaosos.entity;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class SysUser implements Serializable {
+import java.util.Collection;
+import java.util.List;
 
-    private static final long serialVersionUID = -1L;
+/**
+ * @Auther zln
+ * @Date 2018-08-08
+ * @Description :
+ */
+public class SysUser implements UserDetails {
 
-    public String userId;  //用户id
-    public String username; //账户
-    public String password; //密码
-    public String name;     //昵称
-    public String rights;   //
-    public String roleId;  //角色id
-    public String lastLogin;//最后登录时间
-    public String IP;        //ip
-    public String status;    //状态
-    public String BZ;
-    public String skin;
-    public String email;    //邮箱
-    public String number;   //客户号
-    public String phone;    //电话
-    public Integer onlinestatus;//登录状态
-    public Integer provinceId;//省份id
-    public String phoneType;   //通话类型
-    public String phonePass;   //电话系统登录密码
+    private Integer user_id;
+    private String username;
+    @JsonIgnore
+    private String password;
+    private String rawPassword;
+    private String number;
+    private Integer onlinestatus;
+    private String phone_type;
+    private String phone_pass;
 
-    public String getUserId() {
-        return userId;
+    private SysRole role;
+    private List<SysPermission> pPermission;
+    private List<SysPermission> cPermission;
+    private List<? extends GrantedAuthority> authorities;
+
+
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -49,76 +54,36 @@ public class SysUser implements Serializable {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public SysRole getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(SysRole role) {
+        this.role = role;
     }
 
-    public String getRights() {
-        return rights;
+    public List<SysPermission> getpPermission() {
+        return pPermission;
     }
 
-    public void setRights(String rights) {
-        this.rights = rights;
+    public void setpPermission(List<SysPermission> pPermission) {
+        this.pPermission = pPermission;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public List<SysPermission> getcPermission() {
+        return cPermission;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setcPermission(List<SysPermission> cPermission) {
+        this.cPermission = cPermission;
     }
 
-    public String getLastLogin() {
-        return lastLogin;
+    public String getRawPassword() {
+        return rawPassword;
     }
 
-    public void setLastLogin(String lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public String getIP() {
-        return IP;
-    }
-
-    public void setIP(String IP) {
-        this.IP = IP;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getBZ() {
-        return BZ;
-    }
-
-    public void setBZ(String BZ) {
-        this.BZ = BZ;
-    }
-
-    public String getSkin() {
-        return skin;
-    }
-
-    public void setSkin(String skin) {
-        this.skin = skin;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRawPassword(String rawPassword) {
+        this.rawPassword = rawPassword;
     }
 
     public String getNumber() {
@@ -129,14 +94,6 @@ public class SysUser implements Serializable {
         this.number = number;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public Integer getOnlinestatus() {
         return onlinestatus;
     }
@@ -145,27 +102,72 @@ public class SysUser implements Serializable {
         this.onlinestatus = onlinestatus;
     }
 
-    public Integer getProvinceId() {
-        return provinceId;
+    public String getPhone_type() {
+        return phone_type;
     }
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
+    public void setPhone_type(String phone_type) {
+        this.phone_type = phone_type;
     }
 
-    public String getPhoneType() {
-        return phoneType;
+    public String getPhone_pass() {
+        return phone_pass;
     }
 
-    public void setPhoneType(String phoneType) {
-        this.phoneType = phoneType;
+    public void setPhone_pass(String phone_pass) {
+        this.phone_pass = phone_pass;
     }
 
-    public String getPhonePass() {
-        return phonePass;
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setPhonePass(String phonePass) {
-        this.phonePass = phonePass;
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "user_id=" + user_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", rawPassword='" + rawPassword + '\'' +
+                ", number='" + number + '\'' +
+                ", onlinestatus=" + onlinestatus +
+                ", phone_type='" + phone_type + '\'' +
+                ", phone_pass='" + phone_pass + '\'' +
+                ", roles=" + role +
+                ", pPermission=" + pPermission +
+                ", cPermission=" + cPermission +
+                ", authorities=" + authorities +
+                '}';
     }
 }

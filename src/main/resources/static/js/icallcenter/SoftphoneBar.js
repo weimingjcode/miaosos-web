@@ -69,7 +69,7 @@ hojo.declare("icallcenter.SoftphoneBar", null, {
 	_peerHour: "0",
 
 			//sip方式的toolbar状态
-	sip_stInvalid: ["DialEnable", "HangupDisable", "HoldDisable", "ThreeWayCallDisable", "TransferDisable", "ConsultDisable", "IdleEnable", "RestDisable", "BusyDisable"],
+	sip_stInvalid: ["DialEnable", "HangupEnable", "HoldEnable", "ThreeWayCallDisable", "TransferDisable", "ConsultDisable", "IdleDisable", "RestDisable", "BusyDisable"],
 	sip_stBusy: ["DialEnable", "HangupDisable", "HoldDisable", "ThreeWayCallDisable", "TransferDisable", "ConsultDisable", "IdleDisable", "RestDisable", "BusyEnable"],
 	sip_stRest: ["DialEnable", "HangupDisable", "HoldDisable", "ThreeWayCallDisable", "TransferDisable", "ConsultDisable", "IdleDisable", "RestEnable", "BusyDisable"],
 	sip_stDialing: ["DialDisable", "HangupEnable", "HoldDisable", "ThreeWayCallDisable", "TransferDisable","ConsultDisable"],

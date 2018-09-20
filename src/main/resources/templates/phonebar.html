@@ -35,9 +35,9 @@
         });
     </script>
 </head>
-<body>
+<body style="overflow: hidden">
 <div id="softphonebar" class="clearfix" style="padding-top: 15px; padding-bottom: 15px;">
-    <div class="barBox" id="callStatus">
+    <div class="barBox" id="callStatus" style="padding-top: 20px">
         <div class="col-sm-2">
             <input type="text" id="icallcenter.dialout.input" placeholder="输入手机号码" value="输入手机号码"
                    onfocus="if(value=='输入手机号码') {value=''}" onblur="if(value==''){value='输入手机号码'}"
@@ -140,12 +140,13 @@
                 </li>
             </ul>
         </div>
+
     </div>
 
-    <div class="barBox" id="peerStatus">
+    <div class="barBox" id="peerStatus" style="position: relative;left: 25%;top: -42px">
         <div class="col-sm-3 m-t">
             <ul class="status-list clearfix">
-                <li>
+                <li style="border: 0px">
                     <a href="javascript:void(0)" id="IdleEnable" class="IdleEnable cur">
                         <span>空闲</span>
                     </a>
@@ -155,7 +156,7 @@
                        style="display: none"></a>
                 </li>
 
-                <li>
+                <li style="border: 0px">
                     <a href="javascript:void(0)" id="RestEnable" class="RestEnable cur">
                         <span>小休</span>
                     </a>
@@ -166,7 +167,7 @@
                 <li class="none">
                     <a href="#" onclick="javascript:phone.setBusy(true,'1')" id="BusyDisable" class="BusyDisable"></a>
                 </li>
-                <li>
+                <li style="border: 0px">
                     <a href="javascript:void(0)" id="BusyEnable" class="BusyEnable cur">
                         <span>忙碌</span>
                     </a>

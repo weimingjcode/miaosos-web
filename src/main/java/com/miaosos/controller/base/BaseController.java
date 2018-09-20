@@ -1,11 +1,11 @@
 package com.miaosos.controller.base;
 
-import com.miaosos.service.risk.IRiskService;
+import com.miaosos.dao.security.SecurityDao;
+import com.miaosos.service.miaosos.IMiaososService;
+import com.miaosos.service.system.IRoleService;
 import com.miaosos.service.system.IUserService;
-import com.miaosos.service.system.impl.UserServiceImpl;
-import io.lettuce.core.ConnectionId;
+import com.miaosos.websocket.WebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,16 +25,26 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 @ConfigurationProperties(prefix = "miaosos.base")
+@Controller
 public class BaseController {
 
     @Autowired
     public IUserService userService;
 
     @Autowired
+    public SecurityDao securityDao;
+
+    @Autowired
     public RedisTemplate redisTemplate;
 
     @Autowired
-    public IRiskService riskService;
+    public IMiaososService riskService;
+
+    @Autowired
+    public IRoleService roleService;
+
+    @Autowired
+    public WebSocketServer wss;
 
     private String projectName;  //项目名称
 

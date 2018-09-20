@@ -30,10 +30,13 @@
     <h5 class="logo-name">秒帮智能安全报险<br>法视云应急综合救援法务系统平台</h5>
     <div class="login-container">
         <div class="login-form">
-            <form role="form" action="index.html" th:action="@{toLogin}" th:method="POST">
+            <form role="form" action="index.html" th:action="@{login}" th:method="POST">
                 <div class="login-text clearfix">
                     <h1 class="pull-left">用户登录</h1>
                 </div>
+                <p th:if="${param.logout}" class="bg-warning">已成功注销</p><!-- 1 -->
+                <p th:if="${param.error}" class="bg-danger">账号或密码错误</p> <!-- 2 -->
+                <p th:if="${param.ip}" class="bg-danger">IP不在登录范围</p> <!-- 2 -->
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">

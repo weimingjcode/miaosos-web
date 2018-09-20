@@ -458,11 +458,11 @@ body.canvas-menu.mini-navbar .footer {
 
 body.fixed-sidebar .navbar-static-side,
 body.canvas-menu .navbar-static-side {
-    position: fixed;
+    position: absolute;
     width: 220px;
     z-index: 1000;
     height: 100%;
-    top: 120px;
+    top: 134px;
 }
 
 body.fixed-sidebar.mini-navbar .navbar-static-side {

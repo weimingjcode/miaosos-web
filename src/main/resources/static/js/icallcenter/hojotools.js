@@ -52,7 +52,7 @@ icallcenter.hojotools.input = function(connectType) {
        msgObj.style.paddingRight = "4px";
        msgObj.innerHTML = "<div style='text-align:right'>" +
        							"<a href=javascript:icallcenter.hojotools.close();>" +
-       								"<img src='../imgs/tinybox/close_1.gif' onmouseover=\"this.src='../imgs/tinybox/close_2.gif'\" onmouseout=\"this.src='../imgs/tinybox/close_1.gif'\" />" +
+       								"<img src='/js/icallcenter/imgs/tinybox/close_1.gif' onmouseover=\"this.src='/js/icallcenter/imgs/tinybox/close_2.gif'\" onmouseout=\"this.src='/js/icallcenter/imgs/tinybox/close_1.gif'\" />" +
        							"</a>" +
        						"</div>" +
        						"<div style='height:35px;overflow:hidden;text-align:center'>" +
@@ -162,7 +162,7 @@ icallcenter.hojotools.loading = function(message, parentId) {
 	   msgObj.style.paddingTop = "11px";
 	   msgObj.style.paddingLeft = "12px";
 	   msgObj.style.paddingRight = "10px";
-	   msgObj.innerHTML = "<div style='height:20px;overflow:hidden;text-align:center'><img src='../imgs/loading.gif' style='float:left;margin-top:5px;' /><div id='hollyc5.loading.message' style='float:left;color:#666666;padding-left:5px;'>" + message + "</div><div style='clear:both;height:1px;overflow:hidden'>&nbsp;</div></div>";
+	   msgObj.innerHTML = "<div style='height:20px;overflow:hidden;text-align:center'><img src='/js/icallcenter/loading.gif' style='float:left;margin-top:5px;' /><div id='hollyc5.loading.message' style='float:left;color:#666666;padding-left:5px;'>" + message + "</div><div style='clear:both;height:1px;overflow:hidden'>&nbsp;</div></div>";
 
 	   document.getElementById(parentId).appendChild(msgObj);
 };
@@ -206,10 +206,10 @@ icallcenter.hojotools.error = function(message) {
     msgObj.style.textAlign = "left";
     msgObj.style.lineHeight ="25px";
     msgObj.style.zIndex = "10001";
-    msgObj.innerHTML = "<div style='height:27px;background: #f3f3f3;overflow:hidden;padding-top:10px;padding-right:10px;'><div style='float:right'><a href='javascript:icallcenter.hojotools.close();'><img src='../imgs/tinybox/close_1.gif' style='cursor: pointer;border:0px;' /></a></div></div>"+
-        					"<div style='height:30px;overflow:hidden;margin-top:20px;padding-left:20px;'><img src='../imgs/error.jpg' style='float:left;margin-top:4px;' /><div style='float:left;color:#666666;padding-left:5px;font-size:15px;padding-top:4px'>"+message+"</div></div>"+
+    msgObj.innerHTML = "<div style='height:27px;background: #f3f3f3;overflow:hidden;padding-top:10px;padding-right:10px;'><div style='float:right'><a href='javascript:icallcenter.hojotools.close();'><img src='/js/icallcenter/imgs/tinybox/close_1.gif' style='cursor: pointer;border:0px;' /></a></div></div>"+
+        					"<div style='height:30px;overflow:hidden;margin-top:20px;padding-left:20px;'><img src='/js/icallcenter/imgs/error.jpg' style='float:left;margin-top:4px;' /><div style='float:left;color:#666666;padding-left:5px;font-size:15px;padding-top:4px'>"+message+"</div></div>"+
         					"<div style='clear:both;height:1px;overflow:hidden'>&nbsp;</div>"+
-        					"<div style='padding-left:180px;padding-top:20px;'><a href='javascript:icallcenter.hojotools.close();'><img src='../icallcenter/imgs/confirm_1.jpg' onmouseover=\"this.src='../icallcenter/imgs/confirm_2.jpg'\" onmouseout=\"this.src='../icallcenter/imgs/confirm_1.jpg'\" style='cursor: pointer;border:0px;' /></a></div>";
+        					"<div style='padding-left:180px;padding-top:20px;'><a href='javascript:icallcenter.hojotools.close();'><img src='/js/icallcenter/imgs/confirm_1.jpg' onmouseover=\"this.src='/js/icallcenter/imgs/confirm_2.jpg'\" onmouseout=\"this.src='/js/icallcenter/imgs/confirm_1.jpg'\" style='cursor: pointer;border:0px;' /></a></div>";
 
     document.getElementById("softphonebar").appendChild(msgObj);
 }
@@ -267,7 +267,7 @@ icallcenter.hojotools.success = function(message) {
 	   msgObj.style.zIndex = "10001";
 	   msgObj.style.paddingTop = "18px";
 	   msgObj.style.paddingLeft = "35px";
-	   msgObj.innerHTML = "<div style='height:30px;overflow:hidden'><img src='../imgs/success.jpg' style='float:left;margin-top:4px;' /><div style='float:left;color:#666666;padding-left:5px;font-size:15px;padding-top:4px'>" + message + "</div><div class='clear1'>&nbsp;</div></div>";
+	   msgObj.innerHTML = "<div style='height:30px;overflow:hidden'><img src='/js/icallcenter/success.jpg' style='float:left;margin-top:4px;' /><div style='float:left;color:#666666;padding-left:5px;font-size:15px;padding-top:4px'>" + message + "</div><div class='clear1'>&nbsp;</div></div>";
 
 	   document.getElementById("softphonebar").appendChild(msgObj);
 };
@@ -313,7 +313,7 @@ icallcenter.hojotools.softphonebar_showTranster = function(destExten) {
 	msgObj.style.paddingTop = "11px";
 	msgObj.style.paddingLeft = "12px";
 	msgObj.style.paddingRight = "10px";
-	msgObj.innerHTML = "<div style='height:20px;overflow:hidden;text-align:center'><img src='../imgs/loading.gif' style='float:left;margin-top:5px;' />" +
+	msgObj.innerHTML = "<div style='height:20px;overflow:hidden;text-align:center'><img src='/js/icallcenter/loading.gif' style='float:left;margin-top:5px;' />" +
 		"<div id='hollyc5.loading.message' style='float:left;color:#666666;padding-left:5px;'>" +
 		+ "</div><div style='clear:both;height:1px;overflow:hidden'>&nbsp;</div></div>";
 	document.getElementById("softphonebar").appendChild(msgObj);

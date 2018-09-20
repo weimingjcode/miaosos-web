@@ -9,21 +9,24 @@
  }
  /*页面顶部开始 */
 .header {
-  padding: 25px 75px 20px 0;
+  /*padding: 25px 75px 20px 0;*/
 }
 .navbar {
   margin-bottom: 0;
   margin-left: -220px;
   background-color: #fff;
+  /*padding-top: 15px;*/
+  /*padding-bottom: -30px;*/
 }
+
 .header .brand span {
   font-size: 32px;
   color: #3987ec;
-  vertical-align:text-top;
-  margin-left: 30px;
+  /*vertical-align:text-top;*/
+  /*margin-left: 30px;*/
 }
 .header .nav {
-  display: block; 
+  display: block;
 }
 .header .nav > li {
   margin: 0px;
@@ -38,7 +41,7 @@
   background: none;
 }
 .header .nav > li.dropdown > a img{
-  width: 62px;
+  width: 70px;
   border-radius: 50%;
 }
 .header .nav > li.dropdown.user .dropdown-toggle {

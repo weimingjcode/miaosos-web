@@ -5,26 +5,10 @@ spring:
   #  password: rN1^oxMk8gqxU1Wj
    # url: jdbc:mysql://rds9ofcm376jwwdtqs56public.mysql.rds.aliyuncs.com:3306/service?useUnicode=true&user=service&password=rN1^oxMk8gqxU1Wj
    #本地库
+    url: jdbc:mysql://localhost:3306/miaosos
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/miaosos
     driver-class-name: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    filters: [stat,wall,log4j]
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: [druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500]
   thymeleaf:
     cache: false
 
@@ -46,6 +30,10 @@ miaosos:
     resourcePath: 'http://8snf0ca1cc2m.d0o9w1n.t3re.miaosos.com'
 logging:
   path: /var/miaosos-web
+  level:
+    com:
+      miaosos:
+        dao: debug
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

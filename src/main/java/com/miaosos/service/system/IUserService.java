@@ -1,7 +1,7 @@
 package com.miaosos.service.system;
 
-import com.miaosos.entity.SysUser;
 
+import com.miaosos.entity.SysUser;
 
 public interface IUserService {
 

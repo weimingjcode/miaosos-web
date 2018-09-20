@@ -1,16 +1,10 @@
 package com.miaosos.config;
 
-import com.miaosos.entity.SysUser;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @ConfigurationProperties(prefix = "miaosos.base")
@@ -21,8 +15,15 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        //电话系统
         registry.addViewController("phonebar.html").setViewName("phonebar.html");
+        //首页
         registry.addViewController("index_v1.html").setViewName("index_v1.html");
+        //登录
+        registry.addViewController("login").setViewName("login");
+        //
+        registry.addViewController("/system/role").setViewName("/system/role");
+        //registry.addViewController("/").setViewName("home");
     }
 
     @Override
@@ -30,7 +31,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-    @Override
+   /* @Override
     public void addInterceptors(InterceptorRegistry registry) {
         class MiaososoInterceptor extends HandlerInterceptorAdapter {
             @Override
@@ -46,7 +47,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
             }
         }
         registry.addInterceptor(new MiaososoInterceptor()).addPathPatterns("/**").excludePathPatterns("/", "/toLogin");
-    }
+    }*/
 
     public String getSessionUser() {
         return sessionUser;

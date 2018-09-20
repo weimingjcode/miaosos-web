@@ -21,8 +21,8 @@ public interface IRiskDao {
                 "d.device_no," +
                 "d.device_type," +
                 "g.gps_status," +
-                "s.name accepter," +
-                "su.name handler" +
+                "s.username accepter," +
+                "su.username handler" +
             " from " +
                 "gps_info g " +
             " join " +
@@ -42,7 +42,8 @@ public interface IRiskDao {
             " on " +
                 "su.user_id = g.handler_id"+
             " where " +
-                "g.gps_status=#{status} " +
+                "DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= alarm_time " +
+            "and g.gps_status=#{status} " +
             "order by " +
                 "g.id desc")
     List<Map<String, String>> findGpsInfoByStatus(@Param("status") Integer status);
