@@ -37,7 +37,7 @@ public class CustomUserService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(user.getRole().getRole_name()));
             System.out.println("loadUserByUsername: " + user);
         }
-        user.setAuthorities(authorities); //用于登录时 @AuthenticationPrincipal 标签取值
+        /*user.setAuthorities(authorities); //用于登录时 @AuthenticationPrincipal 标签取值*/
         return user;
        /* SysUser user = securityDao.findByUserName(username);
         if (user != null) {

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,10 @@ public class RoleController extends BaseController {
     @GetMapping(value = "/getRole")
     @ResponseBody
     public Object getRole() {
+        Map<String,Object> map = new HashMap<>();
         List<Map<String, String>> roles = roleService.findAllRole();
-        return roles;
+        map.put("rows",roles);
+        map.put("total",100);
+        return map;
     }
 }

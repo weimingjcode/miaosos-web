@@ -61,7 +61,7 @@ public class MpControlelr {
         StrategyConfig strategy = new StrategyConfig();
 //strategy.setTablePrefix(new String[] { "bmd_", "mp_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[] { "sys_user"}); // 需要生成的表
+        strategy.setInclude(new String[]{"sys_user"}); // 需要生成的表
 // 字段名生成策略
 // strategy.setFieldNaming(NamingStrategy.underline_to_camel);
 //strategy.setSuperServiceImplClass("com.baomidou.springwind.service.support.BaseServiceImpl");
@@ -69,7 +69,7 @@ public class MpControlelr {
 // 包配置
         PackageConfig pc = new PackageConfig();
 // pc.setModuleName("test");
-        pc.setParent("com.miaosos.mp");// 自定义包路径
+        pc.setParent(System.getProperty("user.dir")+".com.miaosos.mp");// 自定义包路径
         pc.setController("controller.mp");// 这里是控制器包名，默认 web
         pc.setEntity("model.mp");
         pc.setMapper("dao.mp");

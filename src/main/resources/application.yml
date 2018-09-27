@@ -33,7 +33,7 @@ logging:
   level:
     com:
       miaosos:
-        dao: debug
+        mapper: debug
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
