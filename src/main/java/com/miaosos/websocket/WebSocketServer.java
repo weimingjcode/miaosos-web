@@ -35,6 +35,7 @@ public class WebSocketServer {
             sendMessage("连接成功");
         } catch (IOException e) {
             log.error("websocket IO异常");
+            System.out.println();
         }
     }
     //  //连接打开时执行
